@@ -8,7 +8,7 @@ There are two TypedBools: `True` and `False`. They can be converted to `Bool`s.
 Logical operations and ifelse are defined for them. Using TypedBools can lead to
 type stability in cases where constant propogation is not working for Bools.
 
-```julia
+```jldoctest
 julia> using TypedBools, Base.Test
 
 julia> if_unstable(x) = Bool(x) ? 1 : "a";
