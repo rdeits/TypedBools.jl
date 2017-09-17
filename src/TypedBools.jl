@@ -32,6 +32,9 @@ abstract type TypedBool end
 struct True <: TypedBool end
 struct False <: TypedBool end
 
+export True
+export False
+
 Base.convert(::Type{Bool}, ::True) = true
 Base.convert(::Type{Bool}, ::False) = false
 
