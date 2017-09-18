@@ -26,6 +26,9 @@ julia> @inferred ifelse_unstable(!(True() | True() | False()))
 
 julia> @inferred ifelse_unstable(False() | False() | True())
 1
+
+julia> @inferred if_unstable(typed(true) & typed(false))
+"a"
 ```
 """
 abstract type TypedBool end
@@ -34,6 +37,14 @@ struct False <: TypedBool end
 
 export True
 export False
+
+export typed
+Base.@pure typed(x) =
+    if x
+        True()
+    else
+        False()
+    end
 
 Base.convert(::Type{Bool}, ::True) = true
 Base.convert(::Type{Bool}, ::False) = false
