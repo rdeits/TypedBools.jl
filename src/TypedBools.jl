@@ -15,13 +15,13 @@ julia> if_unstable(x) = Bool(x) ? 1 : "a";
 
 julia> ifelse_unstable(x) = ifelse(x, 1, "a");
 
-julia> @inferred if_unstable(!(True() & True() & False()))
+julia> @inferred if_unstable(not(True() & True() & False()))
 1
 
 julia> @inferred if_unstable(False() & False() & True())
 "a"
 
-julia> @inferred ifelse_unstable(!(True() | True() | False()))
+julia> @inferred ifelse_unstable(not(True() | True() | False()))
 "a"
 
 julia> @inferred ifelse_unstable(False() | False() | True())
