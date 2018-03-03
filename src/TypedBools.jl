@@ -59,6 +59,7 @@ Base.convert(::Type{Bool}, ::False) = false
 (|)(::True, ::False) = True()
 (|)(::True, ::True) = True()
 
+export not
 """
     not(::False) = True()
     not(::True) = False()
