@@ -1,6 +1,6 @@
 module TypedBools
 
-import Base: convert, &, |, !, ifelse
+import Base: convert, &, |, ifelse
 """
     abstract TypedBool
 
@@ -39,7 +39,7 @@ export True
 export False
 
 export typed
-Base.@pure typed(x) =
+typed(x) =
     if x
         True()
     else
@@ -59,8 +59,22 @@ Base.convert(::Type{Bool}, ::False) = false
 (|)(::True, ::False) = True()
 (|)(::True, ::True) = True()
 
-!(::False) = True()
-!(::True) = False()
+"""
+    not(::False) = True()
+    not(::True) = False()
+
+```jldoctest
+julia> using TypedBools
+
+julia> not(True())
+TypedBools.False()
+
+julia> not(False())
+TypedBools.True()
+```
+"""
+not(::False) = True()
+not(::True) = False()
 
 ifelse(switch::False, new, old) = old
 ifelse(switch::True, new, old) = new
