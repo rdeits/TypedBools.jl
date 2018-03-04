@@ -28,6 +28,12 @@ TypedBools.True()
 
 julia> False() | False() | True()
 TypedBools.True()
+
+julia> ifelse(True(), 1, 0)
+1
+
+julia> ifelse(False(), 1, 0)
+0
 ```
 """
 abstract type TypedBool end
