@@ -11,6 +11,12 @@ type stability in cases where constant propogation is not working for Bools.
 ```jldoctest
 julia> using TypedBools
 
+julia> Bool(False())
+false
+
+julia> Bool(True())
+true
+
 julia> True() & True() & False()
 TypedBools.False()
 
