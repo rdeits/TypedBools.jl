@@ -29,7 +29,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "TypedBools.TypedBool",
     "category": "type",
-    "text": "abstract TypedBool\n\nThere are two TypedBools: True and False. They can be converted to Bools. Logical operations and ifelse are defined for them. Using TypedBools can lead to type stability in cases where constant propogation is not working for Bools.\n\njulia> using TypedBools\n\njulia> True() & True() & False()\nTypedBools.False()\n\njulia> False() & False() & True()\nTypedBools.False()\n\njulia> True() | True() | False()\nTypedBools.True()\n\njulia> False() | False() | True()\nTypedBools.True()\n\n\n\n"
+    "text": "abstract TypedBool\n\nThere are two TypedBools: True and False. They can be converted to Bools. Logical operations and ifelse are defined for them. Using TypedBools can lead to type stability in cases where constant propogation is not working for Bools.\n\njulia> using TypedBools\n\njulia> Bool(False())\nfalse\n\njulia> Bool(True())\ntrue\n\njulia> True() & True() & False()\nTypedBools.False()\n\njulia> False() & False() & True()\nTypedBools.False()\n\njulia> True() | True() | False()\nTypedBools.True()\n\njulia> False() | False() | True()\nTypedBools.True()\n\n\n\n"
 },
 
 {
