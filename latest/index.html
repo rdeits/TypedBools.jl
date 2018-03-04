@@ -5,13 +5,13 @@ julia&gt; not(True())
 TypedBools.False()
 
 julia&gt; not(False())
-TypedBools.True()</code></pre></div><a class="source-link" target="_blank" href="https://github.com/bramtayl/TypedBools.jl/blob/b880dc60c4dabac795a33908a62e1f7aae1aa557/src/TypedBools.jl#L77-L91">source</a></section><section class="docstring"><div class="docstring-header"><a class="docstring-binding" id="TypedBools.typed-Tuple{Any}" href="#TypedBools.typed-Tuple{Any}"><code>TypedBools.typed</code></a> — <span class="docstring-category">Method</span>.</div><div><pre><code class="language-none">typed(x)</code></pre><p>Convert a Bool to a TypedBool</p><pre><code class="language-julia-repl">julia&gt; using TypedBools, Base.Test
+TypedBools.True()</code></pre></div><a class="source-link" target="_blank" href="https://github.com/bramtayl/TypedBools.jl/blob/7b8ed20f18adccaf4480631c20f5790d1cb39c21/src/TypedBools.jl#L83-L97">source</a></section><section class="docstring"><div class="docstring-header"><a class="docstring-binding" id="TypedBools.typed-Tuple{Any}" href="#TypedBools.typed-Tuple{Any}"><code>TypedBools.typed</code></a> — <span class="docstring-category">Method</span>.</div><div><pre><code class="language-none">typed(x)</code></pre><p>Convert a Bool to a TypedBool</p><pre><code class="language-julia-repl">julia&gt; using TypedBools, Base.Test
 
 julia&gt; typed(false)
 TypedBools.False()
 
 julia&gt; typed(true)
-TypedBools.True()</code></pre></div><a class="source-link" target="_blank" href="https://github.com/bramtayl/TypedBools.jl/blob/b880dc60c4dabac795a33908a62e1f7aae1aa557/src/TypedBools.jl#L41-L55">source</a></section><section class="docstring"><div class="docstring-header"><a class="docstring-binding" id="TypedBools.TypedBool" href="#TypedBools.TypedBool"><code>TypedBools.TypedBool</code></a> — <span class="docstring-category">Type</span>.</div><div><pre><code class="language-none">abstract TypedBool</code></pre><p>There are two TypedBools: <code>True</code> and <code>False</code>. They can be converted to <code>Bool</code>s. Logical operations and ifelse are defined for them. Using TypedBools can lead to type stability in cases where constant propogation is not working for Bools.</p><pre><code class="language-julia-repl">julia&gt; using TypedBools
+TypedBools.True()</code></pre></div><a class="source-link" target="_blank" href="https://github.com/bramtayl/TypedBools.jl/blob/7b8ed20f18adccaf4480631c20f5790d1cb39c21/src/TypedBools.jl#L47-L61">source</a></section><section class="docstring"><div class="docstring-header"><a class="docstring-binding" id="TypedBools.TypedBool" href="#TypedBools.TypedBool"><code>TypedBools.TypedBool</code></a> — <span class="docstring-category">Type</span>.</div><div><pre><code class="language-none">abstract TypedBool</code></pre><p>There are two TypedBools: <code>True</code> and <code>False</code>. They can be converted to <code>Bool</code>s. Logical operations and ifelse are defined for them. Using TypedBools can lead to type stability in cases where constant propogation is not working for Bools.</p><pre><code class="language-julia-repl">julia&gt; using TypedBools
 
 julia&gt; Bool(False())
 false
@@ -29,4 +29,10 @@ julia&gt; True() | True() | False()
 TypedBools.True()
 
 julia&gt; False() | False() | True()
-TypedBools.True()</code></pre></div><a class="source-link" target="_blank" href="https://github.com/bramtayl/TypedBools.jl/blob/b880dc60c4dabac795a33908a62e1f7aae1aa557/src/TypedBools.jl#L4-L32">source</a></section><footer><hr/></footer></article></body></html>
+TypedBools.True()
+
+julia&gt; ifelse(True(), 1, 0)
+1
+
+julia&gt; ifelse(False(), 1, 0)
+0</code></pre></div><a class="source-link" target="_blank" href="https://github.com/bramtayl/TypedBools.jl/blob/7b8ed20f18adccaf4480631c20f5790d1cb39c21/src/TypedBools.jl#L4-L38">source</a></section><footer><hr/></footer></article></body></html>
