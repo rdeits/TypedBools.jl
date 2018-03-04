@@ -6,7 +6,7 @@ julia&gt; not(True())
 TypedBools.False()
 
 julia&gt; not(False())
-TypedBools.True()</code></pre></div><a class="source-link" target="_blank" href="https://github.com/bramtayl/TypedBools.jl/blob/f1dfc1637db18ca67251e1010e30fb7aa8516891/src/TypedBools.jl#L63-L76">source</a></section><section class="docstring"><div class="docstring-header"><a class="docstring-binding" id="TypedBools.TypedBool" href="#TypedBools.TypedBool"><code>TypedBools.TypedBool</code></a> — <span class="docstring-category">Type</span>.</div><div><pre><code class="language-none">abstract TypedBool</code></pre><p>There are two TypedBools: <code>True</code> and <code>False</code>. They can be converted to <code>Bool</code>s. Logical operations and ifelse are defined for them. Using TypedBools can lead to type stability in cases where constant propogation is not working for Bools.</p><pre><code class="language-julia-repl">julia&gt; using TypedBools, Base.Test
+TypedBools.True()</code></pre></div><a class="source-link" target="_blank" href="https://github.com/bramtayl/TypedBools.jl/blob/aa66842a4d765b6e6cdfcc6513297fcc865c9f20/src/TypedBools.jl#L63-L76">source</a></section><section class="docstring"><div class="docstring-header"><a class="docstring-binding" id="TypedBools.TypedBool" href="#TypedBools.TypedBool"><code>TypedBools.TypedBool</code></a> — <span class="docstring-category">Type</span>.</div><div><pre><code class="language-none">abstract TypedBool</code></pre><p>There are two TypedBools: <code>True</code> and <code>False</code>. They can be converted to <code>Bool</code>s. Logical operations and ifelse are defined for them. Using TypedBools can lead to type stability in cases where constant propogation is not working for Bools.</p><pre><code class="language-julia-repl">julia&gt; using TypedBools, Base.Test
 
 julia&gt; if_unstable(x) = Bool(x) ? 1 : &quot;a&quot;;
 
@@ -25,4 +25,4 @@ julia&gt; @inferred ifelse_unstable(False() | False() | True())
 1
 
 julia&gt; @inferred if_unstable(typed(true) &amp; typed(false))
-&quot;a&quot;</code></pre></div><a class="source-link" target="_blank" href="https://github.com/bramtayl/TypedBools.jl/blob/f1dfc1637db18ca67251e1010e30fb7aa8516891/src/TypedBools.jl#L4-L33">source</a></section><footer><hr/></footer></article></body></html>
+&quot;a&quot;</code></pre></div><a class="source-link" target="_blank" href="https://github.com/bramtayl/TypedBools.jl/blob/aa66842a4d765b6e6cdfcc6513297fcc865c9f20/src/TypedBools.jl#L4-L33">source</a></section><footer><hr/></footer></article></body></html>
