@@ -9,26 +9,19 @@ Logical operations and ifelse are defined for them. Using TypedBools can lead to
 type stability in cases where constant propogation is not working for Bools.
 
 ```jldoctest
-julia> using TypedBools, Base.Test
+julia> using TypedBools
 
-julia> if_unstable(x) = Bool(x) ? 1 : "a";
+julia> True() & True() & False()
+TypedBools.False()
 
-julia> ifelse_unstable(x) = ifelse(x, 1, "a");
+julia> False() & False() & True()
+TypedBools.False()
 
-julia> @inferred if_unstable(not(True() & True() & False()))
-1
+julia> True() | True() | False()
+TypedBools.True()
 
-julia> @inferred if_unstable(False() & False() & True())
-"a"
-
-julia> @inferred ifelse_unstable(not(True() | True() | False()))
-"a"
-
-julia> @inferred ifelse_unstable(False() | False() | True())
-1
-
-julia> @inferred if_unstable(typed(true) & typed(false))
-"a"
+julia> False() | False() | True()
+TypedBools.True()
 ```
 """
 abstract type TypedBool end
@@ -39,6 +32,21 @@ export True
 export False
 
 export typed
+"""
+    typed(x)
+
+Convert a Bool to a TypedBool
+
+```jldoctest
+julia> using TypedBools, Base.Test
+
+julia> typed(false)
+TypedBools.False()
+
+julia> typed(true)
+TypedBools.True()
+```
+"""
 typed(x) =
     if x
         True()
@@ -61,8 +69,9 @@ Base.convert(::Type{Bool}, ::False) = false
 
 export not
 """
-    not(::False) = True()
-    not(::True) = False()
+    not(x)
+
+Negate a TypedBool
 
 ```jldoctest
 julia> using TypedBools
