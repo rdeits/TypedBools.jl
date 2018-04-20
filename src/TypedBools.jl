@@ -101,4 +101,23 @@ not(::True) = False()
 ifelse(switch::False, new, old) = old
 ifelse(switch::True, new, old) = new
 
+export same_type
+"""
+    same_type(a, b)
+
+Check whether `a` and `b` are the same type, return a typed bool.
+
+```jldoctest
+julia> using TypedBools
+
+julia> same_type(Val{:a}(), Val{:a}())
+TypedBools.True()
+
+julia> same_type(Val{:a}(), Val{:b}())
+TypedBools.False()
+```
+"""
+same_type(a::T, b::T) where T = True()
+same_type(a, b) = False()
+
 end
