@@ -17,6 +17,14 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "index.html#TypedBools.same_type-Union{Tuple{T,T}, Tuple{T}} where T",
+    "page": "Home",
+    "title": "TypedBools.same_type",
+    "category": "method",
+    "text": "same_type(a, b)\n\nCheck whether a and b are the same type, return a typed bool.\n\njulia> using TypedBools\n\njulia> same_type(Val{:a}(), Val{:a}())\nTypedBools.True()\n\njulia> same_type(Val{:a}(), Val{:b}())\nTypedBools.False()\n\n\n\n"
+},
+
+{
     "location": "index.html#TypedBools.typed-Tuple{Any}",
     "page": "Home",
     "title": "TypedBools.typed",
