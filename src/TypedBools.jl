@@ -1,11 +1,11 @@
 module TypedBools
 
-import Base: convert, &, |, ifelse
+import Base: convert, &, |
 """
     abstract TypedBool
 
 There are two TypedBools: `True` and `False`. They can be converted to `Bool`s.
-Logical operations and ifelse are defined for them. Using TypedBools can lead to
+Logical operations are defined for them. Using TypedBools can lead to
 type stability in cases where constant propogation is not working for Bools.
 
 ```jldoctest
@@ -18,22 +18,17 @@ julia> Bool(True())
 true
 
 julia> True() & True() & False()
-TypedBools.False()
+False()
 
 julia> False() & False() & True()
-TypedBools.False()
+False()
 
 julia> True() | True() | False()
-TypedBools.True()
+True()
 
 julia> False() | False() | True()
-TypedBools.True()
+True()
 
-julia> ifelse(True(), 1, 0)
-1
-
-julia> ifelse(False(), 1, 0)
-0
 ```
 """
 abstract type TypedBool end
@@ -50,13 +45,13 @@ export typed
 Convert a Bool to a TypedBool
 
 ```jldoctest
-julia> using TypedBools, Base.Test
+julia> using TypedBools, Test
 
 julia> typed(false)
-TypedBools.False()
+False()
 
 julia> typed(true)
-TypedBools.True()
+True()
 ```
 """
 typed(x) =
@@ -66,6 +61,8 @@ typed(x) =
         False()
     end
 
+Base.Bool(::True) = true
+Base.Bool(::False) = false
 Base.convert(::Type{Bool}, ::True) = true
 Base.convert(::Type{Bool}, ::False) = false
 
@@ -89,17 +86,14 @@ Negate a TypedBool
 julia> using TypedBools
 
 julia> not(True())
-TypedBools.False()
+False()
 
 julia> not(False())
-TypedBools.True()
+True()
 ```
 """
 not(::False) = True()
 not(::True) = False()
-
-ifelse(switch::False, new, old) = old
-ifelse(switch::True, new, old) = new
 
 export same_type
 """
@@ -111,10 +105,10 @@ Check whether `a` and `b` are the same type, return a typed bool.
 julia> using TypedBools
 
 julia> same_type(Val{:a}(), Val{:a}())
-TypedBools.True()
+True()
 
 julia> same_type(Val{:a}(), Val{:b}())
-TypedBools.False()
+False()
 ```
 """
 same_type(a::T, b::T) where T = True()
